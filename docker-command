@@ -1,0 +1,23 @@
+docker ps
+docker ps -a
+docker images
+docker rm sql_db
+docker rmi sql_db
+docker pull postgres:14.6-alpine
+
+docker run -it 
+-p 6000:5432 - порти на моїй машині:всередині контейнера
+-v /home/lubov/education/backups:/var/lib/postgresql/data - вольюмси, папка, в яку будуть копіюватись даніЖпапка, з якої приходитимуть дані
+-e POSTGRES_PASSWORD=test 
+-e POSTGRES_USER=test 
+-e POSTGRES_DB=docker_db 
+--name sql_db - назва контейнеру
+postgres:14.6-alpine - через що запускається
+
+sudo chmod a+x+r ./backups - відкрити доступ до папки
+
+docker run -dit 
+-p 8080:3000 
+-v $(pwd):/app:ro 
+--name super_server 
+server:0.0.1
